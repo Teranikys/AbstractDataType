@@ -3,4 +3,4 @@ project(DSA_2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DSA_2 main.cpp ADS_dinamicArray.h ADS_dynamicArray.cpp ADS_dynamicArray.h)
+add_executable(DSA_2 main.cpp ADS_dinamicArray.h ADT_dynamicArray.cpp ADT_dynamicArray.h)

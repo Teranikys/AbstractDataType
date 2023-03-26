@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ADS_dynamicArray.h"
+#include "ADT_dynamicArray.h"
 
 int main() {
     int n, f, elem, index, k, flag = -1;
@@ -10,8 +10,8 @@ int main() {
         return -1;
     }
 
-    ADS_dynamicArray A(n);
-    ADS_dynamicArray B(n);
+    ADT_dynamicArray A(n);
+    ADT_dynamicArray B(n);
 
     std::cout << "Enter 1 if you want to fill in the array manually\n";
     std::cout << "Enter 2 if you want to fill in the array with random numbers\n";
@@ -19,10 +19,10 @@ int main() {
     std::cin >> f;
     switch (f) {
         case 1:
-            ADS_dynamicArray::make(A);
+            ADT_dynamicArray::make(A);
             break;
         case 2:
-            ADS_dynamicArray::makerand(A);
+            ADT_dynamicArray::makerand(A);
             break;
         default:
             std::cout << "Invalid input\n";
@@ -44,7 +44,7 @@ int main() {
                     std::cout << "Invalid array size\n";
                     return -1;
                 }
-                A = ADS_dynamicArray(n);
+                A = ADT_dynamicArray(n);
 
                 std::cout << "Enter 1 if you want to fill in the array manually\n";
                 std::cout << "Enter 2 if you want to fill in the array with random numbers\n";
@@ -52,10 +52,10 @@ int main() {
                 std::cin >> f;
                 switch (f) {
                     case 1:
-                        ADS_dynamicArray::make(A);
+                        ADT_dynamicArray::make(A);
                         break;
                     case 2:
-                        ADS_dynamicArray::makerand(A);
+                        ADT_dynamicArray::makerand(A);
                     default:
                         std::cout << "Invalid input\n";
                         return -1;
@@ -63,17 +63,17 @@ int main() {
                 break;
             case 2:
                 if (A.n > 0) {
-                    ADS_dynamicArray::print(A);
+                    ADT_dynamicArray::print(A);
                 } else {
                     std::cout << "The array is empty. First fill in the array\n";
                 }
                 break;
             case 3:
                 if (A.n > 0) {
-                    B = ADS_dynamicArray(0);
-                    ADS_dynamicArray::makeNewArr(A, B);
+                    B = ADT_dynamicArray(0);
+                    ADT_dynamicArray::makeNewArr(A, B);
                     std::cout << "Array of non-prime numbers: ";
-                    ADS_dynamicArray::print(B);
+                    ADT_dynamicArray::print(B);
                     B.A.clear();
                 } else {
                     std::cout << "The array is empty. First fill in the array\n";
@@ -85,7 +85,7 @@ int main() {
                     std::cin >> elem;
                     std::cout << "Enter the position of new element (enumeration starts from 0)\n";
                     std::cin >> index;
-                    ADS_dynamicArray::insert(A, index, elem);
+                    ADT_dynamicArray::insert(A, index, elem);
                 } else {
                     std::cout << "The array is empty. First fill in the array\n";
                 }
