@@ -38,7 +38,10 @@ void ADT_dynamicArray::print(ADT_dynamicArray x) {
 //4)	Удаление элемента в заданной позиции;
 //Предусловие. Заполненный массив A из n элементов. Целочисленное значение 0 <= index <  n.
 void ADT_dynamicArray::deleteElem(ADT_dynamicArray &x, unsigned int index) {
-    x.A.erase(x.A.cbegin() + index);
+    for (int i = index; i < x.n - 1; ++i){
+        x.A[i] = x.A[i + 1];
+    }
+    x.A = (typeitem*) realloc((typeitem*)x.A, (x.n - 1) * sizeof (typeitem));
     x.n--;
 }
 
@@ -46,12 +49,18 @@ void ADT_dynamicArray::deleteElem(ADT_dynamicArray &x, unsigned int index) {
 //Предусловие. Заполненный массив A из n элементов. n < N-1. 0 <= index < n – позиция для вставки.
 // value – значение для вставки.
 //Постусловие. Массив A из n+1 элементов с новым элементом. Нет возвращаемого значения.
-void ADT_dynamicArray::insert(ADT_dynamicArray &x, unsigned int index, int value) {
-    if (index <= x.n) {
-        x.A.push_back(0);
-        x.A.insert(x.A.cbegin() + index, value);
-        x.n++;
+int ADT_dynamicArray::insert(ADT_dynamicArray &x, unsigned int index, int value) {
+    if ((index <= x.n)) {
+        if ((x.A = (typeitem*) realloc((typeitem*)x.A, (x.n + 1) * sizeof (typeitem))) != NULL) {
+            for (int i = x.n; i > index; --i){
+                x.A[i] = x.A[i - 1];
+            }
+            x.A[index] = value;
+            x.n++;
+            return 0;
+        }
     }
+    return -1;
 }
 
 //1)	Проверка, имеет ли число более двух целых положительных делителей
@@ -71,10 +80,9 @@ bool ADT_dynamicArray::isTwoDivisors(unsigned int a) {
 //Предусловие. Заполненный массив A из n элементов. Целочисленное значение 0 <= index <  n.
 //Постусловие. Массив A из чисел исходного, которые имеют более двух целых положительных делителей.
 void ADT_dynamicArray::makeNewArr(ADT_dynamicArray &x, ADT_dynamicArray &y) {
-    for (auto elem : x.A) {
-        if (isTwoDivisors(elem)) {
-            y.A.push_back(elem);
+    for (unsigned int i = 0; i < x.n; ++i) {
+        if (isTwoDivisors(x.A[i])) {
+            insert(y, y.n, x.A[i]);
         }
     }
-    y.n = y.A.size();
 }

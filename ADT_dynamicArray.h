@@ -5,19 +5,19 @@
 #ifndef DSA_2_ADT_DYNAMICARRAY_H
 #define DSA_2_ADT_DYNAMICARRAY_H
 
-#include "vector"
+#include "malloc.h"
 
-const unsigned int N = 100;
 typedef unsigned int typeitem;
 
 struct ADT_dynamicArray {
     //Определение данных АТД задачи
-    std::vector<typeitem> A;
     unsigned int n = 0;
-    explicit ADT_dynamicArray(int size) {
-        n = size;
-        A.resize(size);
-    }
+    typeitem* A = nullptr;
+    explicit ADT_dynamicArray(int n1){
+        n = n1;
+        A = (typeitem*) malloc(n * sizeof(typeitem));
+    };
+
     //Заполнение множества с клавиатуры
     static void make(ADT_dynamicArray &x);
     //1)	Заполнение структуры данных значениями (случайными числами)
@@ -27,7 +27,7 @@ struct ADT_dynamicArray {
     //Удаление элемента по индексу
     static void deleteElem(ADT_dynamicArray &x, unsigned int index);
     //Вставка элемента по индексу
-    static void insert(ADT_dynamicArray &x, unsigned int index, int value);
+    static int insert(ADT_dynamicArray &x, unsigned int index, int value);
     //Проверка, имеет ли число более двух целых положительных делителей
     static bool isTwoDivisors(unsigned int a);
     //Создание нового массива из чисел исходного, которые имеют более двух целых положительных делителей.

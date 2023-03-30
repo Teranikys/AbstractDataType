@@ -74,7 +74,6 @@ int main() {
                     ADT_dynamicArray::makeNewArr(A, B);
                     std::cout << "Array of non-prime numbers: ";
                     ADT_dynamicArray::print(B);
-                    B.A.clear();
                 } else {
                     std::cout << "The array is empty. First fill in the array\n";
                 }
@@ -96,6 +95,7 @@ int main() {
                 std::cout << "Invalid input\n";
         }
     }
-    A.A.clear();
+    free(A.A);
+    free(B.A);
     return 0;
 }
